@@ -1,0 +1,10 @@
+node_modules/
+dist/
+out/
+lib/
+.env
+.vscode/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node_modules
