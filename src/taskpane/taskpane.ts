@@ -3,13 +3,6 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global console, document, Excel, Office */
-
-/*
- * Copyright (c) Microsoft Corporation.
- * Licensed under the MIT license.
- */
-
 /// <reference types="office-js" />
 
 /* global console, document, Excel, Office */
@@ -26,26 +19,31 @@ Office.onReady((info) => {
     });
 
     UserInput = document.getElementById("fileInput") as HTMLInputElement;
-    UserInput.addEventListener("change", fileImport);
+
+    const run = document.getElementById("run");
+    run.addEventListener("click", fileImport);
   }
 });
 
 let colCount;
 let fileNo = 1;
-let FileSelected
+var FileSelected: File;
+var FileName : string;
 
+//gestione nel caso di file multipli
 async function fileImport() {
   if (!UserInput || !UserInput.files) return;
 
   for (let i = 0; i < UserInput.files.length; i++) {
     FileSelected = UserInput.files[i];
     if (FileSelected) {
-      await ReadFile(FileSelected); 
+      FileName = FileSelected.name;
+      await ReadFile(FileSelected);
     }
   }
 }
 
-
+//legge il file e divide in righe e in celle
 async function ReadFile(FileSelected: File): Promise<void> {
   return new Promise<void>((end) => {
     const Reader = new FileReader();
@@ -60,7 +58,7 @@ async function ReadFile(FileSelected: File): Promise<void> {
         if (!CSVText) return end();
 
         const rows = CSVText
-          .split(/\r\n/)
+          .split(/\r?\n/)
           .filter(r => r.trim() !== "");
 
         if (!rows.length) return end();
@@ -98,7 +96,7 @@ async function ReadFile(FileSelected: File): Promise<void> {
         });
 
         await writeExcel(CSVData);
-        end();                    
+        end();
       } catch (err) {
         console.error("Errore CSV:", err);
         end();
@@ -109,7 +107,7 @@ async function ReadFile(FileSelected: File): Promise<void> {
   });
 }
 
-
+//pulizia della stringa nella cella
 function processCell(cell: string, isHeader: boolean): string | number {
   let trimmed = cell.trim();
   if (trimmed.startsWith('"') && trimmed.endsWith('"')) {
@@ -118,6 +116,7 @@ function processCell(cell: string, isHeader: boolean): string | number {
   return setCellAs(trimmed);
 }
 
+//interpretazione del contenuto della cella 
 function setCellAs(cell: string): string | number {
   const str = cell.trim();
   const numericStr = str.replace(/,/g, '.');
@@ -128,6 +127,7 @@ function setCellAs(cell: string): string | number {
   return str;
 }
 
+//formato di ogni colonna, controllando tutte le singole celle escludendo l'header
 function SetNumericFormat(CSVData: (string | number)[][]): boolean[] {
   const colCount = CSVData[0].length;
   const numericCols: boolean[] = Array(colCount).fill(true);
@@ -149,7 +149,7 @@ function SetNumericFormat(CSVData: (string | number)[][]): boolean[] {
   return numericCols;
 }
 
-
+//gestione della scrittura su excel, con controllo dell'overflow rispetto alle colonne dell'header
 async function writeExcel(CSVData: (string | number)[][]) {
   if (!CSVData.length) return;
 
@@ -169,41 +169,47 @@ async function writeExcel(CSVData: (string | number)[][]) {
   await createNewExcel(CSVData);
 }
 
-
+//creazione del file excel vero
+//vengono salvati i file in diversi fogli sullo stesso file excel
 async function createNewExcel(CSVData: (string | number)[][]) {
-  const run = document.getElementById("run");
-  run.addEventListener("click", () => {
 
   Excel.run(async (context) => {
-    let worksheet;
+    let worksheetAccessible: Excel.Worksheet;
 
-    if (fileNo === 1) {
-      worksheet = context.workbook.worksheets.getActiveWorksheet();
+    if (fileNo == 1) {
+      const worksheet = context.workbook.worksheets.getActiveWorksheet();
+      const CleanName = FileName.split(".")[0].substring(0, 31);
+      worksheet.name = CleanName;
+      worksheetAccessible = worksheet;
     } else {
-      const workbook = Excel.createWorkbook();
-      worksheet = context.workbook.worksheets.getFirst();
+      const worksheet = context.workbook.worksheets.add();
+      const CleanName = FileName.split(".")[0].substring(0,31);
+      worksheet.name = CleanName;
+      worksheetAccessible = worksheet;
     }
 
     fileNo++;
-
+    
     const rowCount = CSVData.length;
     const colCount = CSVData[0].length;
 
-    const range = worksheet.getRangeByIndexes(0, 0, rowCount, colCount);
+    const range = worksheetAccessible.getRangeByIndexes(0, 0, rowCount, colCount);
     range.values = CSVData;
 
     const isNumeric = SetNumericFormat(CSVData);
     for (let column = 0; column < colCount; column++) {
       if (isNumeric[column]) {
-        range.getColumn(column).numberFormat = [['0.00']];
+        range.getColumn(column).numberFormat = [["#,##0.00;[Red]-#,##0.00"]];
       }
     }
+
+    const headerRange = range.getRow(0);
+    headerRange.format.font.bold = true;
 
     range.format.autofitColumns();
     range.format.autofitRows();
 
-    await context.sync();
-  });
+    await context.sync();  
   });
 }
 
