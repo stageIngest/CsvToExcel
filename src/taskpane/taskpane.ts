@@ -171,7 +171,10 @@ async function writeExcel(CSVData: (string | number)[][]) {
 
 
 async function createNewExcel(CSVData: (string | number)[][]) {
-  await Excel.run(async (context) => {
+  const run = document.getElementById("run");
+  run.addEventListener("click", () => {
+
+  Excel.run(async (context) => {
     let worksheet;
 
     if (fileNo === 1) {
@@ -201,4 +204,6 @@ async function createNewExcel(CSVData: (string | number)[][]) {
 
     await context.sync();
   });
+  });
 }
+
