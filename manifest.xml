@@ -10,7 +10,7 @@
   <HighResolutionIconUrl DefaultValue="https://stageingest.github.io/CsvToExcel/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
-    <AppDomain>"https://stageingest.github.io/"</AppDomain>
+    <AppDomain>https://stageingest.github.io/</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Workbook"/>
