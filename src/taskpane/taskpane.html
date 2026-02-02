@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CSV to Excel Converter</title>
-
-    <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-
-    <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
     <link rel="stylesheet" href="https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-core/11.1.0/css/fabric.min.css"/>
-
-    <!-- Template styles -->
-    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+    <link href="taskpane.css?v=1.0.3" rel="stylesheet" type="text/css" />
 </head>
-
 <body class="ms-font-m ms-welcome ms-Fabric">
     <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <input type="file" id="fileInput" style="display:none" multiple/>
-    <button id="browse" class="ms-Button ms-Button--hero">
-        <span class="ms-Button-label">Sfoglia file</span>
-    </button>
-
-    <p id="fileName"></p> <!-- Qui apparirà il nome del file selezionato -->
-
         <img width="170" height="90" src="assets/logoIngest.png" alt="CSV Converter" title="CSV Converter" />
         <h1 class="ms-font-su">CSV to Excel</h1>
+        
+        <!-- BOTTONE BROWSE  -->
+        <input type="file" id="fileInput" accept=".csv" multiple style="display: none;" />
+        <div role="button" id="browse" class="ms-Button ms-Button--hero">
+            <span class="ms-Button-label">Sfoglia file CSV</span>
+        </div>
+        <p id="fileName"></p>
     </header>
+    
     <section id="sideload-msg" class="ms-welcome__main">
         <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
     </section>
+    
     <main id="app-body" class="ms-welcome__main" style="display: none;">
         <h2 class="ms-font-xl">Importa file CSV</h2>
         <ul class="ms-List ms-welcome__features">
@@ -48,22 +42,17 @@
                 <span class="ms-font-m">Formattazione automatica delle colonne</span>
             </li>
         </ul>
-        <p class="ms-font-l">Seleziona uno o più file CSV da importare:</p>
-        <p class="ms-font-l">e quando sei pronto: Run!</p>
+        <p class="ms-font-l">Quando sei pronto: Run!</p>
         
-        <!-- Hidden file input -->
-        <input type="file" id="fileInput" accept=".csv" multiple style="display: none;" />
-        
-        <!-- Browse button -->
-        <div role="button" id="browse" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Sfoglia file CSV</span>
-        </div>
+        <!-- BOTTONE RUN -->
         <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
             <span class="ms-Button-label">Run</span>
         </div>
         
         <p class="ms-font-m" style="margin-top: 20px;"><label id="item-subject"></label></p>
     </main>
+    
+    <!-- IMPORTANTE: LO SCRIPT ALLA FINE CON CACHE-BUSTING -->
+    <script src="taskpane.js?v=1.0.3"></script>
 </body>
-
 </html>
