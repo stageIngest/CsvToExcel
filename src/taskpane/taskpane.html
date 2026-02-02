@@ -19,6 +19,13 @@
 
 <body class="ms-font-m ms-welcome ms-Fabric">
     <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <input type="file" id="fileInput" style="display:none" multiple/>
+    <button id="browse" class="ms-Button ms-Button--hero">
+        <span class="ms-Button-label">Sfoglia file</span>
+    </button>
+
+    <p id="fileName"></p> <!-- Qui apparirà il nome del file selezionato -->
+
         <img width="170" height="90" src="assets/logoIngest.png" alt="CSV Converter" title="CSV Converter" />
         <h1 class="ms-font-su">CSV to Excel</h1>
     </header>
