@@ -8,19 +8,24 @@
 /* global console, document, Excel, Office */
 let UserInput;
 
-    Office.onReady((info) => {
+   Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
     document.getElementById("sideload-msg")!.style.display = "none";
     document.getElementById("app-body")!.style.display = "flex";
-
-    const browse = document.getElementById("browse")!;
-    browse.addEventListener("click", () => {
-      (document.getElementById("fileInput") as HTMLInputElement).click();
+    
+    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+    const run = document.getElementById("run") as HTMLButtonElement;
+    
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files && fileInput.files.length > 0) {
+        console.log("File selezionato:", fileInput.files[0].name);
+        document.getElementById("fileName")!.textContent =
+          "Selected file: " + fileInput.files[0].name;
+      }
     });
 
-    UserInput = document.getElementById("fileInput") as HTMLInputElement;
-
-    const run = document.getElementById("run");
+    UserInput = fileInput
+    
     run.addEventListener("click", fileImport);
   }
 });
