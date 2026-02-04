@@ -6,8 +6,8 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="CSVToExcelXml"/>
   <Description DefaultValue="converter for CSV to Excel"/>
-  <IconUrl DefaultValue="https://stageingest.github.io/CsvToExcel/assets/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://stageingest.github.io/CsvToExcel/assets/icon-64.png"/>
+  <IconUrl DefaultValue="https://stageingest.github.io/CsvToExcel/assets/VENTAGLIO-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://stageingest.github.io/CsvToExcel/assets/VENTAGLIO-64.png"/>
   <SupportUrl DefaultValue="https://support.microsoft.com/it-it/office/iniziare-a-usare-il-componente-aggiuntivo-per-office-82e665c4-6700-4b56-a3f3-ef5441996862"/>
   <AppDomains>
     <AppDomain>https://stageingest.github.io/</AppDomain>
@@ -62,9 +62,9 @@
     </Hosts>
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://stageingest.github.io/CsvToExcel/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="https://stageingest.github.io/CsvToExcel/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="https://stageingest.github.io/CsvToExcel/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://stageingest.github.io/CsvToExcel/assets/VENTAGLIO-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://stageingest.github.io/CsvToExcel/assets/VENTAGLIO-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://stageingest.github.io/CsvToExcel/assets/VENTAGLIO-80.png"/>
       </bt:Images>
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
