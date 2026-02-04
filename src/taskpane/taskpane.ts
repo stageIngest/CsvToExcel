@@ -7,6 +7,7 @@
 
 /* global console, document, Excel, Office */
 let UserInput;
+let fileNo = 1;
 
    Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
@@ -32,7 +33,7 @@ let UserInput;
 
 
 let colCount;
-let fileNo = 1;
+
 var FileSelected: File;
 var FileName : string;
 
