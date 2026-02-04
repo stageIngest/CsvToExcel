@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-core/11.1.0/css/fabric.min.css"/>
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
     <script src="https://stageingest.github.io/CsvToExcel/taskpane.js"></script>
-
 </head>
 <body class="ms-font-m ms-welcome ms-Fabric">
     <header class="ms-welcome__header ms-bgColor-neutralLighter">
@@ -19,8 +18,8 @@
         <!-- BOTTONE BROWSE  -->
         <input type="file" id="fileInput" accept=".csv" multiple style="display: none;" />
         <button id="browse" type="button" class="ms-Button ms-Button--hero">
-        <span class="ms-Button-label">Importa CSV</span>
-    </button>
+            <span class="ms-Button-label">Importa CSV</span>
+        </button>
         <p id="fileName"></p>
     </header>
     
@@ -49,31 +48,26 @@
                 <span class="ms-font-m">1. Apri un nuovo file Excel</span>
             </li>
             <li class="ms-ListItem">
-
                 <span class="ms-font-m">2. Seleziona l'add-in CsvToExcel</span>
             </li>
             <li class="ms-ListItem">
-
                 <span class="ms-font-m">3. Premi Importa CSV</span>
             </li>
             <li class="ms-ListItem">
-
                 <span class="ms-font-m">4. Seleziona uno o più file CSV che vuoi importare e conferma</span>
             </li>
             <li class="ms-ListItem">
-
                 <span class="ms-font-m">5. Premi il bottone Import che trovi in fondo a questa pagina</span>
             </li>
-
         </ul>
-
-
+        
         <!-- BOTTONE RUN -->
         <button id="run" type="button" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
             <span class="ms-Button-label">Import</span>
         </button>
         <p><label id="item-subject"></label></p>
     </main>
+    
     
 </body>
 </html>
