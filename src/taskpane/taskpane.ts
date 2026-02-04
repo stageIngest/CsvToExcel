@@ -17,7 +17,7 @@ let fileNo = 1;
     const fileInput = document.getElementById("fileInput") as HTMLInputElement;
     const run = document.getElementById("run") as HTMLButtonElement;
     
-    fileInput.addEventListener("change", () => {
+    fileInput.addEventListener("click", () => {
       if (fileInput.files && fileInput.files.length > 0) {
         console.log("File selezionato:", fileInput.files[0].name);
         document.getElementById("fileName")!.textContent =
