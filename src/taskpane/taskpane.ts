@@ -6,9 +6,9 @@
 /// <reference types="office-js" />
 
 /* global console, document, Excel, Office */
-var UserInput;
+let UserInput;
 
-Office.onReady((info) => {
+    Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
     document.getElementById("sideload-msg")!.style.display = "none";
     document.getElementById("app-body")!.style.display = "flex";
@@ -24,6 +24,7 @@ Office.onReady((info) => {
     run.addEventListener("click", fileImport);
   }
 });
+
 
 let colCount;
 let fileNo = 1;
