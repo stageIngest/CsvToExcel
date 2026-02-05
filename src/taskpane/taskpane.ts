@@ -23,7 +23,6 @@ Office.onReady((info) => {
 
       UserInput = document.getElementById("fileInput") as HTMLInputElement;
 
-      const run = document.getElementById("run");
       UserInput.addEventListener("change", fileImport);
       
     }
