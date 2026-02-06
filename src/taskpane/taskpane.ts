@@ -10,22 +10,21 @@
 let UserInput = null;
 let fileNo = 1;
 let bool = false;
+
 Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
-    if (info.host === Office.HostType.Excel) {
-      document.getElementById("sideload-msg")!.style.display = "none";
-      document.getElementById("app-body")!.style.display = "flex";
+    document.getElementById("sideload-msg")!.style.display = "none";
+    document.getElementById("app-body")!.style.display = "flex";
 
-      const browse = document.getElementById("browse")!;
-      browse.addEventListener("click", () => {
-        (document.getElementById("fileInput") as HTMLInputElement).click;
-      });
+    const browse = document.getElementById("browse")!;
+    browse.addEventListener("click", () => {
+      (document.getElementById("fileInput") as HTMLInputElement).click();
+    });
 
-      UserInput = document.getElementById("fileInput") as HTMLInputElement;
+    UserInput = document.getElementById("fileInput") as HTMLInputElement;
 
-      UserInput.addEventListener("change", fileImport);
-      
-    }
+    const run = document.getElementById("run");
+    run.addEventListener("click", fileImport);
   }
 });
 
