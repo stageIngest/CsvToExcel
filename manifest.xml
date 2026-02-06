@@ -4,8 +4,8 @@
   <Version>1.0.0.3</Version>
   <ProviderName>IngestStage</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Ing.CSVToExcelXml"/>
-  <Description DefaultValue="converter from CSV to Excel"/>
+  <DisplayName DefaultValue="Ing.CsvToExcelXml"/>
+  <Description DefaultValue="converter from Csv to Excel"/>
   <IconUrl DefaultValue="https://stageingest.github.io/CsvToExcel/assets/VENTAGLIO-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://stageingest.github.io/CsvToExcel/assets/VENTAGLIO-64.png"/>
   <SupportUrl DefaultValue="https://support.microsoft.com/it-it/office/iniziare-a-usare-il-componente-aggiuntivo-per-office-82e665c4-6700-4b56-a3f3-ef5441996862"/>
